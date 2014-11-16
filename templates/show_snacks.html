@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="{{ url_for('add_snacks') }}" method=post class=add-entry>
+    <dl>
+      <dt>Name:
+      <dd><input type=text size=30 name=name>
+      <dt>Type:
+      <dd>  <select name='type'>
+            <option value='coffee'>Coffee</option>
+            <option value='lunch'>Lunch</option>
+            <option value='snack'>Actual snack</option>          
+        </select>
+      <dt>Date:
+      <dd><input type=text size=30 name=date>
+      <dt>Cost:
+      <dd><input type=text size=30 name=cost>
+      <dd><input type=submit value=Share>
+    </dl>
+  </form>
+  <ul class=entries>
+  {% for snack in snacks %}
+    <li><h2>{{ snack.name }}</h2>{{ snack.type }} {{ snack.date }} {{ snack.cost }}
+  {% else %}
+    <li><em>Unbelievable.  No snacks here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
